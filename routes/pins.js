@@ -20,4 +20,14 @@ router.post("/",async (req,res)=>{
         res.status(500).json(error);
     }
 });
+//Get All pins
+router.get("/",async(req,res)=>{
+    try {
+        const pins= await Pin.find();
+        res.status(200).json(pins);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+});
+
 export default router;
