@@ -1,7 +1,8 @@
 import dotenv from "dotenv";
 import express, { json } from "express";
 import mongoose from "mongoose";
-import pinRouter from "./routes/pins.js"
+import pinRouter from "./routes/pins.js";
+import userRouter from "./routes/Users.js";
 
 dotenv.config();
 const PORT=process.env.PORT;
@@ -17,6 +18,7 @@ mongoose
   .catch((err) => {
     console.error(err);
   });
+app.use("/api/users",userRouter);
 app.use("/api/pins",pinRouter);
   app.listen(PORT,()=>{
     console.log(`Server is running on port ${PORT}`);

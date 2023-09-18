@@ -3,7 +3,7 @@ import { getAll, savePins } from "../controller/pincontroller.js";
 
 const router=Router();
 
-//Create a pin
+//Create and get pin
 router.route("/").post(savePins).get(getAll);
 
 export default router;
