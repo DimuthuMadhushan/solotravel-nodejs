@@ -19,3 +19,23 @@ export async function saveUser(req,res){
         res.status(500).json(error);
     }
 }
+
+export async function loginUser(req,res){
+    try {
+     // find user 
+        const user=await User.findOne({username:req.body.username})
+        !user && res.status(400).json("Wronng username or password");
+     // validate password
+        const validPassword=await bcrypt.compare(
+            req.body.password,user.password
+        );
+        !validPassword && res.status(400).json("Wrong user name or password");
+
+     // send res
+        res.status(200).json({_id:user._id, username:user.username})
+        
+    } catch (error) {
+        res.status(500).json(error);
+    }
+
+}
